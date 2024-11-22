@@ -8,6 +8,14 @@ export default {
         Header,
         Product,
     },
+    data() {
+        return {
+            productData: {},
+        };
+    },
+    async mounted() {
+        this.productData = await fetchProductData();
+    },
 };
 
 async function fetchProductData() {
@@ -21,14 +29,12 @@ async function fetchProductData() {
         return null;
     }
 }
-fetchProductData();
 
 </script>
 
 <template>
     <div id="app">
-        <h1>Hello world here is the App</h1>
         <Header />
-        <Product />
+        <Product :product-data="productData" />
     </div>
 </template>
